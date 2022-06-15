@@ -8,6 +8,19 @@ const gImgs = [
     {id: 1, keywords: ['funny', 'politics']},
     {id: 2, keywords: ['dog', 'animals']},
     {id: 3, keywords: ['baby', 'dog' , 'animals']},
+    {id: 4, keywords: ['baby', 'dog' , 'animals']},
+    {id: 5, keywords: ['baby', 'dog' , 'animals']},
+    {id: 6, keywords: ['baby', 'dog' , 'animals']},
+    {id: 9, keywords: ['baby', 'dog' , 'animals']},
+    {id: 10, keywords: ['baby', 'dog' , 'animals']},
+    {id: 11, keywords: ['baby', 'dog' , 'animals']},
+    {id: 12, keywords: ['baby', 'dog' , 'animals']},
+    {id: 13, keywords: ['baby', 'dog' , 'animals']},
+    {id: 14, keywords: ['baby', 'dog' , 'animals']},
+    {id: 15, keywords: ['baby', 'dog' , 'animals']},
+    {id: 16, keywords: ['baby', 'dog' , 'animals']},
+    {id: 17, keywords: ['baby', 'dog' , 'animals']},
+    {id: 18, keywords: ['baby', 'dog' , 'animals']},
 ]
 
 function getImgsForDisplay () {

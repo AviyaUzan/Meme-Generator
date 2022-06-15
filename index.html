@@ -17,18 +17,26 @@
                     <li><a href="#">About</a></li>
                     <li><a href="#">Saved</a></li>
                 </ul>
+                <button onclick="toggleMenu(this)" hidden class="menu-toggle">☰</button>
             </div>
         </header>
 
-        <main class="content-container main-layout">
-            <div class="main-top-bar ">
-                <div class="search-bar">
-                    <input type="search"
-                    class="search-input"
-                    placeholder="Search">
+        <main class="content-container main-layout flex align-center">
+            <div class="gallery-main-layout">
+                <div class="main-top-bar flex">
+                    <div class="search-bar">
+                        <input type="search"
+                        class="search-input"
+                        placeholder="Search">
+                    </div>
+                    <div class="search-bar">
+                        <input type="search"
+                        class="search-input"
+                        placeholder="Place holder for Filter">
+                    </div>
                 </div>
             </div>
-            <section class="gallery flex grid-container"></section>
+            <section class="gallery flex gallery-container"></section>
              <section class="main-editor hidden flex align-center space-between">
                 <canvas class="main-canvas" onclick="draw(event)" width="500" height="500"></canvas>
                 <div class="editor">
@@ -38,6 +46,7 @@
                     <input onchange="onChangeOutLine(this)" type="color" value="#000000" />
                     <button onclick="onIncreaseFont()">Increase</button>
                     <button onclick="onDecreaseFont()">Decrease</button>
+                    <button onclick="onSwitchLines()">Switch Lines</button>
                     <button onclick="onRemoveText()">Delete</button>
                     <button onclick="onAddText()">plus</button>
                     <button onclick="onAlignText('left')">left</button>
@@ -53,9 +62,10 @@
                 </div>
              </section>
         </main>
+        <footer class="main-layout flex">aviya uzan</footer>
 
-        <!-- <script src="js/services/util.service.js"></script>
-        <script src="js/services/storage.service.js"></script> -->
+        <script src="js/services/util.service.js"></script>
+        <!-- <script src="js/services/storage.service.js"></script> -->
         <script src="js/services/editor.service.js"></script>
         <script src="js/services/gallery.service.js"></script>
         <script src="js/gallery-editor.controller.js"></script>

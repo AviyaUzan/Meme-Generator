@@ -12,6 +12,15 @@ const gMeme = {
     outLineColor: 'black',
     x: 100,
     y: 100,
+    },
+    {
+    text: 'Enter text here',
+    size: 20,
+    align: 'center',
+    color: 'white',
+    outLineColor: 'black',
+    x: 200,
+    y: 200,
     }
     ],
     font: 'Impact'
@@ -45,6 +54,13 @@ function decreaseFont() {
     gMeme.lines[gMeme.selectedLineIdx].size -= 1
 }
 
+function switchLines() {
+    gMeme.selectedLineIdx ++
+    if(gMeme.selectedLineIdx >= gMeme.lines.length){
+        gMeme.selectedLineIdx = 0
+    }
+}
+
 function addText() {
     var newLine = {
         text: 'Enter text here',
@@ -52,10 +68,11 @@ function addText() {
         align: 'center',
         color: 'white',
         outLineColor: 'black',
-        x: 100,
-        y: 100,
+        x: 150,
+        y: 150,
         }
     gMeme.lines.push(newLine)
+    gMeme.selectedLineIdx = gMeme.lines.length - 1;
 }
 
 

@@ -18,7 +18,7 @@ function renderGallery() {
         (img) =>
         `<img src="img/${img.id}.jpg" class="meme-img" onclick="onSelectedImg(this)" data-id="${img.id}">`
         )
-        gallery.innerHTML = strHTMLs // .join('')
+        gallery.innerHTML = strHTMLs.join('')
     }
 
     function renderMeme() {
@@ -56,8 +56,8 @@ function drawText(line) {
     gCtx.textAlign = line.align
     gCtx.fillStyle = line.color
     gCtx.font = `${line.size}px ${gMeme.font}`;
-    gCtx.fillText(line.text, 100, 20); //Draws (fills) a given text at the given (x, y) position.
-    gCtx.strokeText(line.text, 100, 20); //Draws (strokes) a given text at the given (x, y) position.
+    gCtx.fillText(line.text, line.x, line.y); //Draws (fills) a given text at the given (x, y) position.
+    gCtx.strokeText(line.text, line.x, line.y); //Draws (strokes) a given text at the given (x, y) position.
 }
 
 function clearCanvas() {
@@ -87,6 +87,11 @@ function onAddText() {
     renderMeme()
 }
 
-function onRemoveText() {
-    onRemoveText()
+function onSwitchLines() {
+    switchLines()
+    renderMeme()
 }
+
+// function onRemoveText() {
+//     onRemoveText()
+// }
