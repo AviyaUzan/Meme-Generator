@@ -81,6 +81,13 @@ image{
     max-height: 130px;
 }
 
+/* EDITOR */
+.editor{
+    background-color: aqua;
+    width: 600px;
+    height: 600px;
+}
+
 
 /* VARS */
 

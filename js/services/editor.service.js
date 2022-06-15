@@ -5,7 +5,7 @@ const gMeme = {
     selectedLineIdx: 0,
     lines: [ 
     {
-    txt: 'I sometimes eat Falafel',
+    text: 'I sometimes eat Falafel',
     size: 20,
     align: 'center',
     color: 'black',
@@ -19,23 +19,38 @@ const gMeme = {
 const gCanvas = document.querySelector('canvas')
 const gCtx = gCanvas.getContext('2d')
 
-function renderMeme(elImg) {
-    const imgId = elImg.dataset.id
-    var base_image = new Image();
-    base_image.src = `img/${imgId}.jpg`
-    base_image.onload = function(){
-    gCtx.drawImage(base_image, 0, 0);
-}
-gCtx.drawText('add text here', 100, 100)
+
+function drawText(line) {
+    // refrence miste-canvas in class
+    gCtx.lineWidth = 1;
+    gCtx.strokeStyle = 'white';
+    gCtx.textAlign = line.align
+    gCtx.fillStyle = line.color
+    gCtx.font = `${line.size}px ${gMeme.font}`;
+    gCtx.fillText(line.text, 100, 20); //Draws (fills) a given text at the given (x, y) position.
+    gCtx.strokeText(line.text, 100, 20); //Draws (strokes) a given text at the given (x, y) position.
+    console.log('Called 2')
 }
 
-function drawText(text, x, y) {
-    gCtx.lineWidth = 2;
-    gCtx.strokeStyle = gOutLine;
-    gCtx.fillStyle = gColor;
-    gCtx.font = '40px Arial';
-    gCtx.fillText(text, x, y); //Draws (fills) a given text at the given (x, y) position.
-    gCtx.strokeText(text, x, y); //Draws (strokes) a given text at the given (x, y) position.
+function setText(text) {
+    gMeme.lines[0].text = text
 }
+
+function clearCanvas() {
+    gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+}
+function getMeme() {
+    return gMeme
+}
+
+function removeText() {
+    // refrence from books - use gMeme - line - txt
+// const bookIdx = gBooks.findIndex((book) =>
+//     bookId === book.id)
+//     gBooks.splice(bookIdx,1)
+//     _saveBooksToStorage()
+}
+
+
 
 

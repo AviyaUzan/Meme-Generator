@@ -29,9 +29,25 @@
                 </div>
             </div>
             <section class="gallery flex grid-container"></section>
-             <section class="main-editor hidden">
+             <section class="main-editor hidden flex align-center space-between">
                 <canvas class="main-canvas" onclick="draw(event)" width="500" height="500"></canvas>
-                <div class="editor"></div>
+                <div class="editor">
+                    <input type="text" class="text" oninput="onSetText(this.value)" placeholder="Enter text here">
+                    <button onclick="onRemoveText()">Delete</button>
+                    <button onclick="onAddText()">plus</button>
+                    <button onclick="onIncreaseFont()">Increase</button>
+                    <button onclick="onDecreaseFont()">Decrease</button>
+                    <button onclick="onAlignText('left')">left</button>
+                    <button onclick="onAlignText('center')">center</button>
+                    <button onclick="onAlignText('right')">right</button>
+                    <select class="main-font" style="font-family: Impact" onchange="onSelectFont()">
+                        <option value="Impact" style="font-family: Impact">IMPACT</option>
+                        <option value="Arial" style="font-family: Arial">ARIAL</option>
+                        <option value="Cambria" style="font-family: Cambria">CAMBRIA</option>
+                        <option value="Georgia" style="font-family: Georgia">GEORGIA</option>
+                        <option value="Verdana" style="font-family: Verdana">VERDANA</option>
+                      </select>
+                </div>
              </section>
         </main>
 
