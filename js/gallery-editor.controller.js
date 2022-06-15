@@ -1,5 +1,10 @@
 'use strict'
 
+
+const gCanvas = document.querySelector('canvas')
+const gCtx = gCanvas.getContext('2d')
+   
+
 function onInit() {
     renderGallery()
     renderMeme()
@@ -19,7 +24,7 @@ function renderGallery() {
     function renderMeme() {
         const meme = getMeme()
         drawImgById(meme.selectedImgId)
-        drawText(meme.lines[0])
+        meme.lines.forEach((line) => drawText(line))
     }
 
     function drawImgById(id) {
@@ -32,19 +37,54 @@ function renderGallery() {
    function onSelectedImg(elImg) {
     hideGallery()
     showEditor()
-    drawImgById(elImg.dataset.id)
+    setImg(elImg.dataset.id)
+    renderMeme()
    }
 
-   // CONTROLLER
+    // EDITOR
    function onSetText(elText) {
-    // need to set new text
-    onClearCanvas()
-       setText(elText)
+        // need to set new text
+        clearCanvas()
+        setText(elText)
         renderMeme()
    }
 
-   function onClearCanvas() {
-    clearCanvas()
+function drawText(line) {
+    // refrence miste-canvas in class
+    gCtx.lineWidth = 1;
+    gCtx.strokeStyle = line.outLineColor
+    gCtx.textAlign = line.align
+    gCtx.fillStyle = line.color
+    gCtx.font = `${line.size}px ${gMeme.font}`;
+    gCtx.fillText(line.text, 100, 20); //Draws (fills) a given text at the given (x, y) position.
+    gCtx.strokeText(line.text, 100, 20); //Draws (strokes) a given text at the given (x, y) position.
+}
+
+function clearCanvas() {
+    gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+}
+
+function onChangeColor(elColorInput) {
+    changeColor(elColorInput)
+    renderMeme()
+}
+function onChangeOutLine(elOutLineInput) {
+    changeOutLine(elOutLineInput)
+    renderMeme()
+}
+
+function onIncreaseFont() {
+    increaseFont()
+    renderMeme()
+}
+function onDecreaseFont() {
+    decreaseFont()
+    renderMeme()
+}
+
+function onAddText() {
+    addText()
+    renderMeme()
 }
 
 function onRemoveText() {

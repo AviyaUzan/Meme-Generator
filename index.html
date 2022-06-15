@@ -33,10 +33,13 @@
                 <canvas class="main-canvas" onclick="draw(event)" width="500" height="500"></canvas>
                 <div class="editor">
                     <input type="text" class="text" oninput="onSetText(this.value)" placeholder="Enter text here">
-                    <button onclick="onRemoveText()">Delete</button>
-                    <button onclick="onAddText()">plus</button>
+                    
+                    <input onchange="onChangeColor(this)" type="color" value="#FFFFFF" />
+                    <input onchange="onChangeOutLine(this)" type="color" value="#000000" />
                     <button onclick="onIncreaseFont()">Increase</button>
                     <button onclick="onDecreaseFont()">Decrease</button>
+                    <button onclick="onRemoveText()">Delete</button>
+                    <button onclick="onAddText()">plus</button>
                     <button onclick="onAlignText('left')">left</button>
                     <button onclick="onAlignText('center')">center</button>
                     <button onclick="onAlignText('right')">right</button>
