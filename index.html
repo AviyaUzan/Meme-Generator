@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="css/main.css" />
         <title>Meme Generator</title>
     </head>
-    <body>
+    <body onload="onInit()">
 
         <header class="header-container flex align-center main-layout">
             <div class="main-header flex align-center space-between"> 
@@ -28,14 +28,17 @@
                     placeholder="Search">
                 </div>
             </div>
-            <section class="gallary"></section>
-             <section class="editor"></section>
+            <section class="gallery flex grid-container"></section>
+             <section class="main-editor hidden">
+                <canvas class="main-canvas" onclick="draw(event)" width="500" height="500"></canvas>
+                <div class="editor"></div>
+             </section>
         </main>
 
-        <script src="js/services/util.service.js"></script>
-        <script src="js/services/storage.service.js"></script>
-        <script src="js/services/meme.service.js"></script>
-        <script src="js/gallery.controller.js"></script>
-        <script src="js/meme.controller.js"></script>
+        <!-- <script src="js/services/util.service.js"></script>
+        <script src="js/services/storage.service.js"></script> -->
+        <script src="js/services/editor.service.js"></script>
+        <script src="js/services/gallery.service.js"></script>
+        <script src="js/gallery-editor.controller.js"></script>
     </body>
 </html>
