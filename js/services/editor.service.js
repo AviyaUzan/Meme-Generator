@@ -29,6 +29,26 @@ const gMeme = {
     ],
    }
 
+   const STORAGE_KEY = 'memesDB'
+
+   function loadMemes () {
+    var memes = loadFromStorage(STORAGE_KEY)
+    if(!memes) {
+        memes = []
+    }
+    return memes
+   }
+
+   function saveMeme () {
+    var memes = loadMemes ()
+    memes.push(gMeme)
+    _saveMemesToStorage(memes)
+   }
+
+   function _saveMemesToStorage(memes){
+    saveToStorage(STORAGE_KEY, memes)
+   }
+
    function getMeme() {
        return gMeme
    }

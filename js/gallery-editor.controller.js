@@ -52,6 +52,11 @@ function renderGallery() {
    }
 
     // EDITOR
+
+    function onSaveMeme() {
+        saveMeme()
+    }
+
    function onSetText(elText) {
         clearCanvas()
         setText(elText)
