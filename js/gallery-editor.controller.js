@@ -24,6 +24,7 @@ function renderGallery() {
         `<img src="img/${img.id}.jpg" class="meme-img" onclick="onSelectedImg(this)" data-id="${img.id}">`
         )
         gallery.innerHTML = strHTMLs.join('')
+        showGallery()
     }
 
     function renderMeme() {
@@ -42,6 +43,7 @@ function renderGallery() {
     }
 
     // GALLERY
+
    function onSelectedImg(elImg) {
     hideGallery()
     showEditor()
@@ -106,6 +108,11 @@ function onSwitchLines() {
 
 function onRemoveText() {
     removeText()
+    renderMeme()
+}
+
+function onSelectFont(elFont) {
+    setFont(elFont)
     renderMeme()
 }
 

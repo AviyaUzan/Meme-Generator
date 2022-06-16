@@ -28,6 +28,10 @@ function getImgsForDisplay () {
     return gImgs
 }
 
+function showGallery() {
+    gGalleryContainer.classList.remove('hidden')
+    gEditor.classList.add('hidden')
+}
 function getGallery() {
     return gGallery
 }

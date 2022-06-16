@@ -36,6 +36,10 @@ const gMeme = {
 function setImg(id) {
     gMeme.selectedImgId = id
 }
+
+function setFont(elFont) {
+    gMeme.lines[gMeme.selectedLineIdx].font = elFont
+}
    
 function setText(text) {
     gMeme.lines[gMeme.selectedLineIdx].text = text

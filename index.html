@@ -13,7 +13,7 @@
             <div class="main-header flex align-center space-between"> 
                 <div class="main-logo space-between"></div>
                 <ul class="main-header-nav flex clean-list">
-                    <li><a href="#">Gallery</a></li>
+                    <li><a href="#" onclick="renderGallery()">Gallery</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Saved</a></li>
                 </ul>
@@ -53,7 +53,7 @@
                     <img src="img\left.png" onclick="onAlignText('right')">
                     <img src="img\center.png" onclick="onAlignText('center')">
                     <img src="img\right.png" onclick="onAlignText('left')">
-                       <select class="main-font" style="font-family: Impact" onchange="onSelectFont()">
+                       <select class="main-font" style="font-family: Impact" onchange="onSelectFont(this.value)">
                            <option value="Impact" style="font-family: Impact">IMPACT</option>
                            <option value="Arial" style="font-family: Arial">ARIAL</option>
                            <option value="Cambria" style="font-family: Cambria">CAMBRIA</option>
