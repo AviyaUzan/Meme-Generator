@@ -13,7 +13,7 @@ const gMeme = {
     x: 250,
     y: 80,
     isDrag:false,
-    pressed: true
+    font: 'Impact'
     },
     {
     text: 'Enter text here',
@@ -23,15 +23,12 @@ const gMeme = {
     outLineColor: 'black',
     x: 250,
     y: 420,
-    pressed: false,
     isDrag:false,
+    font: 'Impact'
     }
     ],
-    font: 'Impact'
    }
 
-   var currLine = gMeme.lines[gMeme.selectedLineIdx]
-   
    function getMeme() {
        return gMeme
    }
@@ -41,22 +38,26 @@ function setImg(id) {
 }
    
 function setText(text) {
-    currLine.text = text
+    gMeme.lines[gMeme.selectedLineIdx].text = text
+}
+
+function alignText(direction) {
+    gMeme.lines[gMeme.selectedLineIdx].align = direction
 }
 
 function changeColor(elColorInput) {
-    currLine.color = elColorInput.value;
+    gMeme.lines[gMeme.selectedLineIdx].color = elColorInput.value;
 }
 function changeOutLine(elOutLineInput) {
-    currLine.outLineColor = elOutLineInput.value;
+    gMeme.lines[gMeme.selectedLineIdx].outLineColor = elOutLineInput.value;
 }
 
 function increaseFont() {
-    currLine.size += 1
+    gMeme.lines[gMeme.selectedLineIdx].size += 1
 }
 
 function decreaseFont() {
-    currLine.size -= 1
+    gMeme.lines[gMeme.selectedLineIdx].size -= 1
 }
 
 function switchLines() {
@@ -78,8 +79,8 @@ function addText() {
         outLineColor: 'black',
         x: 250,
         y: 250,
-        pressed: true,
         isDrag:false,
+        font: 'Impact'
         }
     gMeme.lines.push(newLine)
     gMeme.selectedLineIdx = gMeme.lines.length - 1;
@@ -87,6 +88,8 @@ function addText() {
 
 
 function removeText() {
+    gMeme.lines.splice(gMeme.selectedLineIdx,1)
+    switchLines()
     // refrence from books - use gMeme - line - txt
 // const bookIdx = gBooks.findIndex((book) =>
 //     bookId === book.id)
@@ -96,20 +99,20 @@ function removeText() {
 
 // DRAG AND DROP
 function isTextClicked(clickedPos) {
-    const {x} = currLine
-    const {y} = currLine
+    const {x} = gMeme.lines[gMeme.selectedLineIdx]
+    const {y} = gMeme.lines[gMeme.selectedLineIdx]
     console.log(x)
     const distance = Math.sqrt((x - clickedPos.x) ** 2 + (y - clickedPos.y) ** 2)
-    return distance <= currLine.size
+    return distance <= gMeme.lines[gMeme.selectedLineIdx].size
 }
 
 function setTextDrag(isDrag) {
-    currLine.isDrag = isDrag
+    gMeme.lines[gMeme.selectedLineIdx].isDrag = isDrag
 }
 
 function moveText(dx,dy){
-    currLine.x += dx 
-    currLine.y += dy 
+    gMeme.lines[gMeme.selectedLineIdx].x += dx 
+    gMeme.lines[gMeme.selectedLineIdx].y += dy 
 }
 
 
