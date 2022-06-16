@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="css/main.css" />
         <title>Meme Generator</title>
     </head>
-    <body onload="onInit()">
+    <body onload="onInit(event)">
 
         <header class="header-container flex align-center main-layout">
             <div class="main-header flex align-center space-between"> 
@@ -37,31 +37,40 @@
                 </div>
             </div>
             <section class="gallery flex gallery-container"></section>
-             <section class="main-editor hidden flex align-center space-between">
-                <canvas class="main-canvas" onclick="draw(event)" width="500" height="500"></canvas>
-                <div class="editor">
-                    <input type="text" class="text" oninput="onSetText(this.value)" placeholder="Enter text here">
-                    
-                    <input onchange="onChangeColor(this)" type="color" value="#FFFFFF" />
-                    <input onchange="onChangeOutLine(this)" type="color" value="#000000" />
-                    <button onclick="onIncreaseFont()">Increase</button>
-                    <button onclick="onDecreaseFont()">Decrease</button>
-                    <button onclick="onSwitchLines()">Switch Lines</button>
-                    <button onclick="onRemoveText()">Delete</button>
-                    <button onclick="onAddText()">plus</button>
-                    <button onclick="onAlignText('left')">left</button>
-                    <button onclick="onAlignText('center')">center</button>
-                    <button onclick="onAlignText('right')">right</button>
-                    <select class="main-font" style="font-family: Impact" onchange="onSelectFont()">
-                        <option value="Impact" style="font-family: Impact">IMPACT</option>
-                        <option value="Arial" style="font-family: Arial">ARIAL</option>
-                        <option value="Cambria" style="font-family: Cambria">CAMBRIA</option>
-                        <option value="Georgia" style="font-family: Georgia">GEORGIA</option>
-                        <option value="Verdana" style="font-family: Verdana">VERDANA</option>
-                      </select>
-                </div>
-             </section>
         </main>
+        <main class="main-editor hidden main-layout flex space-between">
+               <canvas class="main-canvas" width="500" height="500"></canvas>
+               <div class="editor flex">
+                   <input type="text" class="text" oninput="onSetText(this.value)" placeholder="Enter text here">
+                   <div>
+                        <img src="img\switch.jpg"  onclick="onSwitchLines()">
+                        <img src="img\add.jpg" onclick="onAddText()">
+                        <img src="img\delete.jpg" onclick="onRemoveText()">
+                   </div>
+                   <div>
+                    <img src="img\increase.jpg" onclick="onIncreaseFont()">
+                    <img src="img\decrease.jpg" onclick="onDecreaseFont()">
+                    <img src="img\left.jpg" onclick="onAlignText('left')">
+                    <img src="img\center.jpg" onclick="onAlignText('center')">
+                    <img src="img\right.jpg" onclick="onAlignText('right')">
+                       <select class="main-font" style="font-family: Impact" onchange="onSelectFont()">
+                           <option value="Impact" style="font-family: Impact">IMPACT</option>
+                           <option value="Arial" style="font-family: Arial">ARIAL</option>
+                           <option value="Cambria" style="font-family: Cambria">CAMBRIA</option>
+                           <option value="Georgia" style="font-family: Georgia">GEORGIA</option>
+                           <option value="Verdana" style="font-family: Verdana">VERDANA</option>
+                        </select>
+                        
+                        <label for="color"><img src="img\outline.png"></label>
+                        <input class="hidden" onchange="onChangeColor(this)" type="color" id="color" value="#FFFFFF" />
+                        <label for="outline"><img src="img\color.jpg" ></label>
+                        <input class="hidden" onchange="onChangeOutLine(this)" id="outline" type="color" value="#000000" />
+                   </div>
+                   <div>STICKER GO HERE</div>
+                   <div>SHARE AND DOWNLOAD</div>
+               </div>
+        </main>
+        
         <footer class="main-layout flex">aviya uzan</footer>
 
         <script src="js/services/util.service.js"></script>

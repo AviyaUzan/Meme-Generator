@@ -2,6 +2,7 @@
 
 const gGallery = document.querySelector('.gallery')
 const gEditor = document.querySelector('.main-editor')
+const gGalleryContainer = document.querySelector('.content-container')
 
 var gKeywordSearchCountMap = {'funny': 12,'cat': 16, 'baby': 2}
 const gImgs = [
@@ -32,7 +33,8 @@ function getGallery() {
 }
 
 function hideGallery() {
-    gGallery.classList.add('hidden')
+    gGalleryContainer.classList.add('hidden')
+    
 }
 
 function showEditor(){
