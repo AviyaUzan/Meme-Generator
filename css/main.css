@@ -54,6 +54,7 @@ image{
 }
 
 .search-input{
+    color: white;
     width: 300px;
     height: 50px;
     border-radius: 29px;
@@ -119,6 +120,10 @@ box-shadow: 1px 5px 0 rgba(92, 92, 92, 0.55), inset 0 5px 0 rgba(255, 255, 255, 
 border-radius: 10px;
 width: 55px;
 height: 48px;
+}
+
+.colors{
+margin-left: 200px;
 }
 
 .emojis{
@@ -293,7 +298,9 @@ footer{
         opacity: 1;
     }
 
-    menu-toggle
+    .menu-toggle{
+
+    }
     body.menu-open .main-header-nav {
         box-shadow: 0 3px 6px 0 var(--clr2);
         transform: translateY(0);
@@ -316,9 +323,33 @@ footer{
         height: 160vh;
     }
 }
-@media screen and (max-width: 389px) {
+@media screen and (max-width: 414px) {
     .content-container{
-        height: 305vh;
+        height: 174vh;
+    }
+    .editor{  
+        width: 340px;
+        height: 550px;
+    }
+    canvas{
+        width: 300px;
+        height: 300px;
+    }
+    footer{
+        font-size: 13px;
+    }
+}
+@media screen and (max-width: 390px) {
+    .content-container{
+        height: 185vh;
+    }
+}
+@media screen and (max-width: 375px) {
+    .content-container{
+        height: 235vh;
+    }
+    footer{
+        font-size: 12px;
     }
 }
 
