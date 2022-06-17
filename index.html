@@ -42,12 +42,12 @@
                <canvas class="main-canvas" width="500" height="500"></canvas>
                <div class="editor flex">
                    <input type="text" class="text" oninput="onSetText(this.value)" placeholder="Enter text here">
-                   <div>
+                   <div class="text-impact-1 flex">
                         <img src="img\switch.png"  onclick="onSwitchLines()">
                         <img src="img\add.png" onclick="onAddText()">
                         <img src="img\delete.png" onclick="onRemoveText()">
                    </div>
-                   <div>
+                   <div class="text-impact-2 flex">
                     <img src="img\increase.png" onclick="onIncreaseFont()">
                     <img src="img\decrease.png" onclick="onDecreaseFont()">
                     <img src="img\left.png" onclick="onAlignText('right')">
@@ -61,13 +61,21 @@
                            <option value="Verdana" style="font-family: Verdana">VERDANA</option>
                         </select>
                         
-                        <label for="color"><img src="img\outline.png"></label>
+                        <label for="color"><img class="outline" src="img\outline.png"></label>
                         <input class="hidden" onchange="onChangeColor(this)" type="color" id="color" value="#FFFFFF" />
-                        <label for="outline"><img src="img\color.png" ></label>
+                        <label  for="outline"><img src="img\color.png" ></label>
                         <input class="hidden" onchange="onChangeOutLine(this)" id="outline" type="color" value="#000000" />
                    </div>
-                   <div>STICKER GO HERE</div>
-                   <div><img src="img\share.jpg" onclick="onSaveMeme()"></div>
+                   <div class="emojis flex">
+                    <img src="img\emoji1.png">
+                    <img src="img\emoji2.png">
+                    <img src="img\emoji3.png">
+                    <img src="img\emoji4.png">
+                   </div>
+                   <div class="save-and-download">
+                       <h1 class="save-meme flex" onclick="onSaveMeme()"><img class="share-icon" src="img\share1.png" > share</h1>
+                    <a  href="#" onclick="downloadCanvas(this)" download="file-name"><img class="download" src="img\download.png"></a>
+                </div>
                </div>
         </main>
         

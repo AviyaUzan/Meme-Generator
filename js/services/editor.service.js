@@ -13,6 +13,7 @@ const gMeme = {
     x: 250,
     y: 80,
     isDrag:false,
+    isPressed:true,
     font: 'Impact'
     },
     {
@@ -24,10 +25,13 @@ const gMeme = {
     x: 250,
     y: 420,
     isDrag:false,
+    isPressed:true,
     font: 'Impact'
     }
     ],
    }
+
+
 
    const STORAGE_KEY = 'memesDB'
 
@@ -104,6 +108,7 @@ function addText() {
         x: 250,
         y: 250,
         isDrag:false,
+        isPressed:true,
         font: 'Impact'
         }
     gMeme.lines.push(newLine)

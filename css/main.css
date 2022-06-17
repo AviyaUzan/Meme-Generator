@@ -93,14 +93,65 @@ image{
     flex-direction: row;
 }
 .editor{
+    position: relative;
     background-color: var(--clr2);
-    width: 350px;
+    width: 370px;
     height: 514px;
     border-radius: 30px;
     box-shadow: 5px 5px 5px #353536, inset 5px 5px 5px #353536;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
     align-items: center;
+}
+
+.main-font{
+font-size: 35px;
+width: 59%;
+height: 50px;
+box-shadow: 1px 5px 0 rgba(92, 92, 92, 0.55), inset 0 5px 0 rgba(255, 255, 255, 0.58);
+border-radius: 10px;
+background-color: #ffffff;
+}
+
+.outline{
+background-color: #ffffff;
+box-shadow: 1px 5px 0 rgba(92, 92, 92, 0.55), inset 0 5px 0 rgba(255, 255, 255, 0.58);
+border-radius: 10px;
+width: 55px;
+height: 48px;
+}
+
+.emojis{
+    height: 91px;
+    border-radius: 45px;
+    background-color: #ffffff;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-impact-1{
+    gap: 15px;
+}
+
+.text-impact-2 {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #19a59f;
+    border-radius: 15px;
+    padding: 5px;
+    width: 90%;
+}
+
+.text{
+    font-size: 30px;
+    margin-top: 20px;
+    width: 90%;
+    height: 57px;
+    box-shadow: 1px 2px 0 #ffffff, inset 0 2px 0 #ffffff;
+    border-radius: 28px;
+    background-color: #ebeef3;
 }
 
 canvas{
@@ -111,6 +162,33 @@ canvas{
 
 .pressed{
     border: 1px solid black;
+}
+
+.save-and-download{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.download{
+    width:150px;
+}
+.save-meme{
+    font-size: large;
+    font-family: 'Times New Roman', Times, serif;
+    color: #ffffff;
+    width: 150px;
+    height: 35px;
+    box-shadow: 1px 3px 0 #165c9c, inset 0 5px 0 #5c8ce6;
+    border-radius: 10px;
+    background-color: #1e7cd3;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.share-icon{
+    width: 15px;
+    height: 15px;
 }
 /*  FOOTER*/
 footer{
@@ -180,6 +258,21 @@ footer{
         width: 80vw;
         border-radius: 29px;
     }
+
+    .main-editor{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 25px;
+    }
+
+    .editor{  
+        width: 500px;
+    }
+    canvas{
+        width: 500px;
+        height: 500px;
+    }
 } 
 
 @media screen and (max-width: 778px) {
@@ -200,6 +293,7 @@ footer{
         opacity: 1;
     }
 
+    menu-toggle
     body.menu-open .main-header-nav {
         box-shadow: 0 3px 6px 0 var(--clr2);
         transform: translateY(0);
@@ -209,6 +303,22 @@ footer{
         padding: 1em;
         width: 100%;
         border-bottom: 2px solid var(--clr4);
+    }
+}
+
+@media screen and (max-width: 774px) {
+    .content-container{
+        height: 124vh;
+    }
+}
+@media screen and (max-width: 583px) {
+    .content-container{
+        height: 160vh;
+    }
+}
+@media screen and (max-width: 389px) {
+    .content-container{
+        height: 305vh;
     }
 }
 

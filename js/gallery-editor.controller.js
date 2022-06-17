@@ -31,9 +31,6 @@ function renderGallery() {
         const meme = getMeme()
         drawImgById(meme.selectedImgId)
         meme.lines.forEach((line) => drawText(line))
-        if(meme.lines[meme.selectedLineIdx].pressed){
-            meme.lines[meme.selectedLineIdx].add
-        }
     }
 
     function drawImgById(id) {
@@ -41,6 +38,14 @@ function renderGallery() {
         base_image.src = `img/${id}.jpg`
         gCtx.drawImage(base_image, 0, 0);
     }
+
+    // Download
+function downloadCanvas(elLink) {
+    //gets canvas content and convert it to base64 data URL that can be save as an image
+  const data = gCanvas.toDataURL()
+  elLink.href = data
+  elLink.download = 'Canvas' // file name
+}
 
     // GALLERY
 
@@ -73,6 +78,13 @@ function drawText(line) {
     gCtx.font = `${line.size}px ${meme.lines[meme.selectedLineIdx].font}`;
     gCtx.fillText(line.text, line.x, line.y); //Draws (fills) a given text at the given (x, y) position.
     gCtx.strokeText(line.text, line.x, line.y); //Draws (strokes) a given text at the given (x, y) position.
+    if(line.isPressed){
+        gCtx.beginPath()
+        gCtx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
+        gCtx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+        gCtx.strokeRect(line.x, line.y - line.size / 2, line.text.width, line.size);
+        gCtx.fillRect(line.x, line.y - line.size / 2, line.text.width, line.size);
+    }
 }
 
 function onAlignText(direction) {
