@@ -39,14 +39,6 @@ function renderGallery() {
         gCtx.drawImage(base_image, 0, 0);
     }
 
-    // Download
-function downloadCanvas(elLink) {
-    //gets canvas content and convert it to base64 data URL that can be save as an image
-  const data = gCanvas.toDataURL()
-  elLink.href = data
-  elLink.download = 'Canvas' // file name
-}
-
     // GALLERY
 
    function onSelectedImg(elImg) {
@@ -54,6 +46,11 @@ function downloadCanvas(elLink) {
     showEditor()
     setImg(elImg.dataset.id)
     renderMeme()
+   }
+
+   function onSearch(elInput) {
+    const filteredImgs = filteredImgs(elInput)
+
    }
 
     // EDITOR
@@ -78,6 +75,7 @@ function drawText(line) {
     gCtx.font = `${line.size}px ${meme.lines[meme.selectedLineIdx].font}`;
     gCtx.fillText(line.text, line.x, line.y); //Draws (fills) a given text at the given (x, y) position.
     gCtx.strokeText(line.text, line.x, line.y); //Draws (strokes) a given text at the given (x, y) position.
+
     if(line.isPressed){
         gCtx.beginPath()
         gCtx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
@@ -204,71 +202,48 @@ function onUp() {
     }
 }
 
+// DOWNLOAD
+function downloadCanvas(elLink) {
+      const data = gCanvas.toDataURL('image/jpeg')
+      elLink.href = data
+      elLink.download = 'Canvas' // file name
+}
 
-
-
-
-
-
-
-
-
-
-
+// SHARE 
+function uploadImg() {
+    const imgDataUrl = gCanvas.toDataURL("image/jpeg");// Gets the canvas content as an image format
   
-//   function getEvPos(ev) {
-//     //Gets the offset pos , the default pos
-//     var pos = {
-//         x: ev.offsetX,
-//         y: ev.offsetY,
-//     }
-//     // Check if its a touch ev
-//     if (gTouchEvs.includes(ev.type)) {
-//         //soo we will not trigger the mouse ev
-//         ev.preventDefault()
-//         //Gets the first touch point
-//         ev = ev.changedTouches[0]
-//         //Calc the right pos according to the touch screen
-//         pos = {
-//             x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
-//             y: ev.pageY - ev.target.offsetTop - ev.target.clientTop
-//         }
-//     }
-//     return pos
-//   }
+    // A function to be called if request succeeds
+    function onSuccess(uploadedImgUrl) {
+        //Encode the instance of certain characters in the url
+        const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+        // document.querySelector('.user-msg').innerText = `Your photo is available here: ${uploadedImgUrl}`
+        //Create a link that on click will make a post in facebook with the image we uploaded
+        document.querySelector('.save-meme').innerHTML = `
+        <a class="btn" href="https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;">
+           Click Again   
+        </a>`
+    }
+    //Send the image to the server
+    doUploadImg(imgDataUrl, onSuccess);
+}
   
-//   function onDown(ev) {
-//     //Get the ev pos from mouse or touch
-//     const x = ev.offsetX
-//     const y = ev.offsetY  
-//     gIsMouseDown = true
-//     gCtx.beginPath()
-//     gCtx.moveTo(x, y)
-//   }
-  
-//   function onMove(ev) {
-//      if(!gIsMouseDown) return
-//      var pos = getEvPos(ev)
-//      const x = pos.x
-//     const y = pos.y  
-  
-//     if(gCurrShape === 'line') drawLine(x, y)
-//     else {
-//       switch (gCurrShape) {
-//         case 'triangle' :
-//           drawTriangle(x, y)
-//           break;
-//         case 'rect' :
-//           drawRect(x, y)
-//           break;
-//         case 'text' :
-//           drawText('Hello', x, y)
-//           break;
-//       }
-//     }
-//     gCtx.stroke()
-//   }
-  
-//   function onUp() {
-//     gIsMouseDown = false
-//   }
+  function doUploadImg(imgDataUrl, onSuccess) {
+    //Pack the image for delivery
+    const formData = new FormData();
+    formData.append('img', imgDataUrl)
+    //Send a post req with the image to the server
+    fetch('//ca-upload.com/here/upload.php', {
+        method: 'POST',
+        body: formData
+    })   //Gets the result and extract the text/ url from it
+        .then(res => res.text())
+        .then((url) => {
+            console.log('Got back live url:', url);
+            //Pass the url we got to the callBack func onSuccess, that will create the link to facebook
+            onSuccess(url)
+        })
+        .catch((err) => {
+            console.error(err)
+        })
+}

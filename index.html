@@ -25,7 +25,7 @@
             <div class="gallery-main-layout">
                 <div class="main-top-bar flex">
                     <div class="search-bar">
-                        <input type="search"
+                        <input oninput="onSearch(this.value)" type="search"
                         class="search-input"
                         placeholder="Search">
                     </div>
@@ -73,7 +73,7 @@
                     <img src="img\emoji4.png">
                    </div>
                    <div class="save-and-download">
-                       <h1 class="save-meme flex" onclick="onSaveMeme()"><img class="share-icon" src="img\share1.png" > share</h1>
+                       <h1 class="save-meme flex" onclick="uploadImg()"><img class="share-icon" src="img\share1.png" > share</h1>
                     <a  href="#" onclick="downloadCanvas(this)" download="file-name"><img class="download" src="img\download.png"></a>
                 </div>
                </div>
