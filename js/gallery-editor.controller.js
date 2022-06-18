@@ -49,8 +49,8 @@ function renderGallery() {
    }
 
    function onSearch(elInput) {
-    const filteredImgs = filteredImgs(elInput)
-
+    setFilterBy(elInput)
+    renderGallery()
    }
 
     // EDITOR
