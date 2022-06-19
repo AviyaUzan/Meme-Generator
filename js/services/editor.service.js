@@ -10,7 +10,7 @@ const gMeme = {
     align: 'center',
     color: 'white',
     outLineColor: 'black',
-    x: 250,
+    x:130,
     y: 80,
     isDrag:false,
     isPressed:true,
@@ -22,7 +22,7 @@ const gMeme = {
     align: 'center',
     color: 'white',
     outLineColor: 'black',
-    x: 250,
+    x: 130,
     y: 420,
     isDrag:false,
     isPressed:true,
@@ -69,8 +69,18 @@ function setText(text) {
     gMeme.lines[gMeme.selectedLineIdx].text = text
 }
 
-function alignText(direction) {
+function alignText(direction,canvas,width) {
     gMeme.lines[gMeme.selectedLineIdx].align = direction
+    if(direction === 'center'){
+        gMeme.lines[gMeme.selectedLineIdx].x = (canvas.width-width)/2
+    }
+    if(direction === 'left'){
+        gMeme.lines[gMeme.selectedLineIdx].x = 0
+    }
+    if(direction === 'right'){
+        gMeme.lines[gMeme.selectedLineIdx].x =  canvas.width - width
+    }
+    return gMeme.lines[gMeme.selectedLineIdx].x
 }
 
 function changeColor(elColorInput) {
@@ -105,10 +115,9 @@ function addText() {
         align: 'center',
         color: 'white',
         outLineColor: 'black',
-        x: 250,
+        x: 130,
         y: 250,
         isDrag:false,
-        isPressed:true,
         font: 'Impact'
         }
     gMeme.lines.push(newLine)
@@ -127,12 +136,14 @@ function removeText() {
 }
 
 // DRAG AND DROP
-function isTextClicked(clickedPos) {
-    const {x} = gMeme.lines[gMeme.selectedLineIdx]
-    const {y} = gMeme.lines[gMeme.selectedLineIdx]
-    console.log(x)
-    const distance = Math.sqrt((x - clickedPos.x) ** 2 + (y - clickedPos.y) ** 2)
-    return distance <= gMeme.lines[gMeme.selectedLineIdx].size
+function isTextClicked(clickedPos, height, width) {
+    const {x,y}   = clickedPos;
+    console.log('x,y',x,y)
+    const selectedLineIdx= gMeme.lines.findIndex(line=>x>=line.x && x<=line.x+width&&y<=line.y&&y>=line.y-height)
+    console.log(selectedLineIdx);
+    if(selectedLineIdx === -1) return false
+    gMeme.selectedLineIdx=selectedLineIdx
+    return true
 }
 
 function setTextDrag(isDrag) {

@@ -53,9 +53,9 @@
                    <div class="text-impact-2 flex">
                     <img src="img\increase.png" onclick="onIncreaseFont()">
                     <img src="img\decrease.png" onclick="onDecreaseFont()">
-                    <img src="img\left.png" onclick="onAlignText('right')">
+                    <img src="img\left.png" onclick="onAlignText('left')">
                     <img src="img\center.png" onclick="onAlignText('center')">
-                    <img src="img\right.png" onclick="onAlignText('left')">
+                    <img src="img\right.png" onclick="onAlignText('right')">
                        <select class="main-font" style="font-family: Impact" onchange="onSelectFont(this.value)">
                            <option value="Impact" style="font-family: Impact">IMPACT</option>
                            <option value="Arial" style="font-family: Arial">ARIAL</option>
@@ -64,10 +64,12 @@
                            <option value="Verdana" style="font-family: Verdana">VERDANA</option>
                         </select>
                         
-                        <label  title="color" for="color"><img src="img\color.png" ></label>
-                        <input class="hidden colors" onchange="onChangeColor(this)" type="color" id="color" value="#FFFFFF" />
-                        <label title="outline color" for="outline"><img class="outline" src="img\outline.png"></label>
-                        <input class="hidden colors" onchange="onChangeOutLine(this)" id="outline" type="color" value="#000000" />
+                        <label  title="color" for="color"><img class="colors-inputs" src="img\color.png" >
+                            <input class="colors" onchange="onChangeColor(this)" type="color" id="color" value="#FFFFFF" />
+                        </label>
+                        <label title="outline color" for="outline"><img class="outline" src="img\outline.png">
+                            <input class="colors" onchange="onChangeOutLine(this)" id="outline" type="color" value="#000000" />
+                        </label>
                    </div>
                    <div class="emojis flex">
                     <img src="img\emoji1.png">

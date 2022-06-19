@@ -31,6 +31,7 @@ function renderGallery() {
         const meme = getMeme()
         drawImgById(meme.selectedImgId)
         meme.lines.forEach((line) => drawText(line))
+        drawRect();
     }
 
     function drawImgById(id) {
@@ -55,6 +56,12 @@ function renderGallery() {
 
     // EDITOR
 
+    function textSize(text) {
+        const lineWidth = gCtx.measureText(text).width
+        const lineHeight = gCtx.measureText(text).fontBoundingBoxAscent
+        return {lineWidth, lineHeight}
+    }
+
     function onSaveMeme() {
         saveMeme()
     }
@@ -65,28 +72,32 @@ function renderGallery() {
         renderMeme()
    }
 
+   function drawRect(){
+    const meme=getMeme();
+    const selectedLine= meme.lines[meme.selectedLineIdx]
+    const {lineWidth, lineHeight} = textSize(selectedLine.text)
+    gCtx.strokeRect(selectedLine.x, selectedLine.y - lineHeight, lineWidth, lineHeight);
+   }
+
 function drawText(line) {
     // refrence miste-canvas in class
     var meme = getMeme()
     gCtx.lineWidth = 1;
     gCtx.strokeStyle = line.outLineColor
-    gCtx.textAlign = line.align
+    // gCtx.textAlign = line.align-lineWidth
     gCtx.fillStyle = line.color
     gCtx.font = `${line.size}px ${meme.lines[meme.selectedLineIdx].font}`;
+    
     gCtx.fillText(line.text, line.x, line.y); //Draws (fills) a given text at the given (x, y) position.
     gCtx.strokeText(line.text, line.x, line.y); //Draws (strokes) a given text at the given (x, y) position.
-
-    if(line.isPressed){
-        gCtx.beginPath()
-        gCtx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
-        gCtx.fillStyle = 'rgba(255, 255, 255, 0.4)';
-        gCtx.strokeRect(line.x, line.y - line.size / 2, line.text.width, line.size);
-        gCtx.fillRect(line.x, line.y - line.size / 2, line.text.width, line.size);
-    }
+    
 }
 
 function onAlignText(direction) {
-    alignText(direction)
+    var meme = getMeme()
+    const {lineWidth} = textSize(meme.lines[meme.selectedLineIdx].text)
+    
+    alignText(direction,gCanvas,lineWidth)
     renderMeme()
 }
 function clearCanvas() {
@@ -167,14 +178,17 @@ function addTouchListeners() {
 }
 
 function onDown(ev) {
+    const meme = getMeme()
+    const {lineWidth, lineHeight} = textSize(meme.lines[meme.selectedLineIdx].text)
     //Get the ev pos from mouse or touch
     const pos = getEvPos(ev)
-    if (!isTextClicked(pos)) return
+    if (!isTextClicked(pos,lineHeight,lineWidth)) return
     setTextDrag(true)
     //Save the pos we start from 
     gStartPos = pos
     console.log('gStartPos',gStartPos)
     gCanvas.style.cursor = 'grabbing'
+    renderMeme()
 }
 
 function onMove(ev) {
@@ -195,6 +209,7 @@ function onMove(ev) {
 function onUp() {
     setTextDrag(false)
     const meme = getMeme()
+    if(!gStartPos)return;
     if(gStartPos.x === meme.lines[meme.selectedLineIdx].x && gStartPos.y === meme.lines[meme.selectedLineIdx].y) {
         gCanvas.style.cursor = 'grab'
     } else {

@@ -188,8 +188,18 @@ width: 55px;
 height: 48px;
 }
 
+label{
+    position: relative;
+}
+
 .colors{
-margin-left: 200px;
+    position: absolute;
+    top: 0%;
+    display: inline;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
 }
 
 .emojis{
