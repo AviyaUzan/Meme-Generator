@@ -12,7 +12,6 @@ function onInit(ev) {
     addTouchListeners(ev)
     renderGallery()
     renderMeme()
-
 }
 
 // RENDERS
@@ -34,6 +33,19 @@ function renderGallery() {
         drawRect();
     }
 
+    // function renderKeyWords() {
+    //     showAllCategories()
+    //     const elKeyWords = document.querySelector('.key-words')
+    //     const keyWords = getKeyWords()
+    //     const data = {}
+    //     var strHTMLs = ''
+    //         for (const key in keyWords) {
+    //             strHTMLs+= `<span class="search-words" onclick=onMakeFsBigger(this,this.textContent) data="${keyWords[key]}">${key}</span>`
+    //            data[key] = keyWords[key]
+    //         }
+    //     elKeyWords.innerHTML = strHTMLs
+    // }
+
     function drawImgById(id) {
         var base_image = new Image();
         base_image.src = `img/${id}.jpg`
@@ -41,6 +53,10 @@ function renderGallery() {
     }
 
     // GALLERY
+
+    function showAllCategories(value) {
+        gShowAllCategories = value;
+    }
 
    function onSelectedImg(elImg) {
     hideGallery()
@@ -55,7 +71,6 @@ function renderGallery() {
    }
 
     // EDITOR
-
     function textSize(text) {
         const lineWidth = gCtx.measureText(text).width
         const lineHeight = gCtx.measureText(text).fontBoundingBoxAscent
@@ -66,11 +81,16 @@ function renderGallery() {
         saveMeme()
     }
 
-   function onSetText(elText) {
+    function onSetText(elText) {
+      const meme = getMeme();
+      const line = meme.selectedLineIdx;
+      if (!elText) {
+        elText = 'Enter text here'
+      }
+        setText(elText, line)
         clearCanvas()
-        setText(elText)
         renderMeme()
-   }
+    }
 
    function drawRect(){
     const meme=getMeme();
@@ -86,7 +106,7 @@ function drawText(line) {
     gCtx.strokeStyle = line.outLineColor
     // gCtx.textAlign = line.align-lineWidth
     gCtx.fillStyle = line.color
-    gCtx.font = `${line.size}px ${meme.lines[meme.selectedLineIdx].font}`;
+    gCtx.font = `${line.size}px ${line.font}`;
     
     gCtx.fillText(line.text, line.x, line.y); //Draws (fills) a given text at the given (x, y) position.
     gCtx.strokeText(line.text, line.x, line.y); //Draws (strokes) a given text at the given (x, y) position.
@@ -124,12 +144,33 @@ function onDecreaseFont() {
 
 function onAddText() {
     addText()
+    setLineVal()
     renderMeme()
 }
 
 function onSwitchLines() {
     switchLines()
+    setLineVal()
+    setLineFont()
     renderMeme()
+}
+
+function setLineVal() {
+    const elText = document.querySelector('[name=text-meme]')
+    elText.focus()
+    const meme = getMeme()
+    const selectedLine = meme.lines[meme.selectedLineIdx]
+    elText.value = selectedLine.text
+    if (elText.value === 'Enter text here') {
+        elText.value = '';
+      }
+}
+
+function setLineFont(){
+    const meme = getMeme()
+    const elFont = document.querySelector('[name=font-family]')
+    const selectedLine = meme.lines[meme.selectedLineIdx]
+    elFont.value = selectedLine.font
 }
 
 function onRemoveText() {

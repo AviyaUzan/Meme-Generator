@@ -22,6 +22,12 @@ const gImgs = [
     {id: 17, keywords: ['politics']},
     {id: 18, keywords: ['cartoon', 'explain']},
 ]
+let gKeywords = {'funny': 2, 'politics':3, 'dog':2, 'animals':3, 'baby':3, 'cat':1, 'victory':1, 'explain':2, 
+'laugh':3, 'wrestling':1, 'old':1,'toast':1, 'glasses':1, 'close':1, 'zero':1, 'cartoon':1}
+
+function getKeyWords() {
+    return gKeywords
+}
 
 var gFilterBy = { word: '' }
 

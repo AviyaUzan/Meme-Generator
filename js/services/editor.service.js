@@ -65,8 +65,8 @@ function setFont(elFont) {
     gMeme.lines[gMeme.selectedLineIdx].font = elFont
 }
    
-function setText(text) {
-    gMeme.lines[gMeme.selectedLineIdx].text = text
+function setText(text, line) {
+    gMeme.lines[line].text = text
 }
 
 function alignText(direction,canvas,width) {
@@ -103,9 +103,6 @@ function switchLines() {
     if(gMeme.selectedLineIdx >= gMeme.lines.length){
         gMeme.selectedLineIdx = 0
     }
-    // if(gMeme.lines[gMeme.selectedLineIdx].pressed) {
-
-    // }
 }
 
 function addText() {
@@ -154,5 +151,3 @@ function moveText(dx,dy){
     gMeme.lines[gMeme.selectedLineIdx].x += dx 
     gMeme.lines[gMeme.selectedLineIdx].y += dy 
 }
-
-

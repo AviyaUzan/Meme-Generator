@@ -44,19 +44,19 @@
         <main class="main-editor hidden main-layout flex space-between">
                <canvas class="main-canvas" width="500" height="500"></canvas>
                <div class="editor flex">
-                   <input type="text" class="text" oninput="onSetText(this.value)" placeholder="Enter text here">
+                   <input type="text" class="text" name="text-meme" oninput="onSetText(this.value)" placeholder="Enter text here">
                    <div class="text-impact-1 flex">
-                        <img src="img\switch.png"  onclick="onSwitchLines()">
-                        <img src="img\add.png" onclick="onAddText()">
-                        <img src="img\delete.png" onclick="onRemoveText()">
+                        <img class="hover-editor" src="img\switch.png"  onclick="onSwitchLines()">
+                        <img class="hover-editor" src="img\add.png" onclick="onAddText()">
+                        <img class="hover-editor" src="img\delete.png" onclick="onRemoveText()">
                    </div>
                    <div class="text-impact-2 flex">
-                    <img src="img\increase.png" onclick="onIncreaseFont()">
-                    <img src="img\decrease.png" onclick="onDecreaseFont()">
-                    <img src="img\left.png" onclick="onAlignText('left')">
-                    <img src="img\center.png" onclick="onAlignText('center')">
-                    <img src="img\right.png" onclick="onAlignText('right')">
-                       <select class="main-font" style="font-family: Impact" onchange="onSelectFont(this.value)">
+                    <img class="hover-editor" src="img\increase.png" onclick="onIncreaseFont()">
+                    <img class="hover-editor" src="img\decrease.png" onclick="onDecreaseFont()">
+                    <img class="hover-editor" src="img\left.png" onclick="onAlignText('left')">
+                    <img class="hover-editor" src="img\center.png" onclick="onAlignText('center')">
+                    <img class="hover-editor" src="img\right.png" onclick="onAlignText('right')">
+                       <select class="main-font hover-editor" style="font-family: Impact" name="font-family" onchange="onSelectFont(this.value)">
                            <option value="Impact" style="font-family: Impact">IMPACT</option>
                            <option value="Arial" style="font-family: Arial">ARIAL</option>
                            <option value="Cambria" style="font-family: Cambria">CAMBRIA</option>
@@ -64,18 +64,18 @@
                            <option value="Verdana" style="font-family: Verdana">VERDANA</option>
                         </select>
                         
-                        <label  title="color" for="color"><img class="colors-inputs" src="img\color.png" >
-                            <input class="colors" onchange="onChangeColor(this)" type="color" id="color" value="#FFFFFF" />
+                        <label title="color" for="color"><img class="colors-inputs" src="img\color.png" >
+                            <input class="colors hover-editor" onchange="onChangeColor(this)" type="color" id="color" value="#FFFFFF" />
                         </label>
-                        <label title="outline color" for="outline"><img class="outline" src="img\outline.png">
-                            <input class="colors" onchange="onChangeOutLine(this)" id="outline" type="color" value="#000000" />
+                        <label class="hover-editor" title="outline color" for="outline"><img class="outline" src="img\outline.png">
+                            <input class="hover-editor colors" onchange="onChangeOutLine(this)" id="outline" type="color" value="#000000" />
                         </label>
                    </div>
                    <div class="emojis flex">
-                    <img src="img\emoji1.png">
-                    <img src="img\emoji2.png">
-                    <img src="img\emoji3.png">
-                    <img src="img\emoji4.png">
+                    <img class="hover-editor" src="img\emoji1.png">
+                    <img class="hover-editor" src="img\emoji2.png">
+                    <img class="hover-editor" src="img\emoji3.png">
+                    <img class="hover-editor" src="img\emoji4.png">
                    </div>
                    <div class="save-and-download">
                        <h1 class="save-meme flex" onclick="uploadImg()"><img class="share-icon" src="img\share1.png" > share</h1>
